@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useUserData } from "../hooks/useUserData";
 import { useUsers } from "../hooks/useUsers";
 
 function Login() {
@@ -6,6 +7,8 @@ function Login() {
   const emailRef = useRef();
   const [errorUsername, setErrorUsername] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
+  const { users } = useUsers();
+  const { setUser } = useUserData();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +25,24 @@ function Login() {
     }
     setErrorEmail("");
     setErrorUsername("");
+
+    const usernameFound = users.find(
+      (user) => user.username === usernameRef.current.value
+    );
+    const emailFound = users.find(
+      (user) => user.email === emailRef.current.value
+    );
+
+    if (!usernameFound || !emailFound) {
+      throw new Error("invalid credentials");
+    }
+
+    const userFound = users.filter(
+      (user) =>
+        user.username == usernameRef.current.value &&
+        user.email == emailRef.current.value
+    );
+    setUser(userFound);
   };
 
   return (
