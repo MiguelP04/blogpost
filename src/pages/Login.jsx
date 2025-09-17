@@ -1,28 +1,20 @@
 import { useRef, useState } from "react";
 import { useUserData } from "../hooks/useUserData";
 import { useUsers } from "../hooks/useUsers";
+import { useNavigate } from "react-router";
 
 function Login() {
   const usernameRef = useRef();
   const emailRef = useRef();
   const [errorUsername, setErrorUsername] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
+  const [invalidCredentials, setInvalidCreadentials] = useState("");
   const { users } = useUsers();
   const { setUser } = useUserData();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (
-      usernameRef.current.value.length < 3 &&
-      usernameRef.current.value.length > 1
-    ) {
-      setErrorUsername("The username must be least 3 characters");
-    }
-
-    if (!emailRef.current.value.match(/[A-Za-z0-9._-]+@[a-z]+\.[a-z]{2,6}$/)) {
-      return setErrorEmail("The email is invalid");
-    }
     setErrorEmail("");
     setErrorUsername("");
 
@@ -34,6 +26,7 @@ function Login() {
     );
 
     if (!usernameFound || !emailFound) {
+      setInvalidCreadentials("Invalid credentials");
       throw new Error("invalid credentials");
     }
 
@@ -43,6 +36,7 @@ function Login() {
         user.email == emailRef.current.value
     );
     setUser(userFound);
+    navigate("/");
   };
 
   return (
@@ -77,6 +71,11 @@ function Login() {
             />
             {errorEmail && <p className="text-red-600">{errorEmail}</p>}
           </label>
+          {invalidCredentials && (
+            <p className="flex justify-center py-2 text-red-600 text-sm bg-red-300">
+              {invalidCredentials}
+            </p>
+          )}
           <button
             type="submit"
             className="py-1 bg-black text-white cursor-pointer font-semibold rounded-md"
