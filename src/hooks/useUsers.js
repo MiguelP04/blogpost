@@ -16,5 +16,5 @@ export function useUsers() {
     getUsers();
   }, []);
 
-  return { users, loading, error };
+  return { users };
 }
