@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+const BASE_API = import.meta.env.VITE_BASE_API
+const PICSUM_BASE = "https://picsum.photos/200/300?random=";
 
 export default function UserDashboard() {
   const [userId, setUserId] = useState(1);
@@ -14,7 +16,6 @@ export default function UserDashboard() {
   const [newPostBody, setNewPostBody] = useState("");
   const [posting, setPosting] = useState(false);
 
-
   const [editingPostId, setEditingPostId] = useState(null);
   const [editTitle, setEditTitle] = useState("");
   const [editBody, setEditBody] = useState("");
@@ -22,7 +23,7 @@ export default function UserDashboard() {
   useEffect(() => {
     if (selectedSection === "profile") {
       setUser(null);
-      fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+      fetch(`${BASE_API}/users/${userId}`)
         .then((res) => res.json())
         .then((data) => setUser(data))
         .catch(console.error);
@@ -32,7 +33,7 @@ export default function UserDashboard() {
   useEffect(() => {
     if (selectedSection === "posts") {
       setPosts([]);
-      fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
+      fetch(`${BASE_API}/posts?userId=${userId}`)
         .then((res) => res.json())
         .then((data) => setPosts(data))
         .catch(console.error);
@@ -43,7 +44,7 @@ export default function UserDashboard() {
     if (selectedSection === "albums") {
       setAlbums([]);
       setSelectedAlbumId(null);
-      fetch(`https://jsonplaceholder.typicode.com/albums?userId=${userId}`)
+      fetch(`${BASE_API}/albums?userId=${userId}`)
         .then((res) => res.json())
         .then((data) => setAlbums(data))
         .catch(console.error);
@@ -55,7 +56,7 @@ export default function UserDashboard() {
       setPhotos([]);
       return;
     }
-    fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${selectedAlbumId}`)
+    fetch(`${BASE_API}/photos?albumId=${selectedAlbumId}`)
       .then((res) => res.json())
       .then((data) => setPhotos(data))
       .catch(console.error);
@@ -287,7 +288,7 @@ export default function UserDashboard() {
                     {photos.slice(0, 12).map((photo) => (
                       <img
                         key={photo.id}
-                        src={photo.thumbnailUrl}
+                        src={`${PICSUM_BASE}${photo.id}`}
                         alt={photo.title}
                         title={photo.title}
                         className="rounded border border-gray-300 cursor-pointer hover:scale-105 transition-transform"
