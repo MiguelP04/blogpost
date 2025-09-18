@@ -46,7 +46,13 @@ function Login() {
           <h1 className="text-xl font-bold">Login</h1>
           <p className="text-zinc-500">Sign in to your account</p>
         </div>
+
         <form className="flex flex-col gap-4 w-72 " onSubmit={handleSubmit}>
+          {invalidCredentials && (
+            <p className="flex justify-center py-2 text-red-600 text-sm bg-red-300">
+              {invalidCredentials}
+            </p>
+          )}
           <label className="flex flex-col gap-1 text-sm text-zinc-600">
             Username
             <input
@@ -71,14 +77,10 @@ function Login() {
             />
             {errorEmail && <p className="text-red-600">{errorEmail}</p>}
           </label>
-          {invalidCredentials && (
-            <p className="flex justify-center py-2 text-red-600 text-sm bg-red-300">
-              {invalidCredentials}
-            </p>
-          )}
+
           <button
             type="submit"
-            className="py-1 bg-black text-white cursor-pointer font-semibold rounded-md"
+            className="py-1 mt-2 bg-black text-white cursor-pointer font-semibold rounded-md"
           >
             Submit
           </button>

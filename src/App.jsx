@@ -4,18 +4,19 @@ import Login from "./pages/Login";
 import Album from "./pages/Album";
 import Post from "./pages/Post";
 import Profile from "./pages/Profile";
-import Navbar from "./components/Navbar";
+import { ProtectedRoutes } from "./components/ProtectedRoutes";
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/post/:postId" element={<Post />} />
-        <Route path="/profile/:userId" element={<Profile />} />
-        <Route path="/Album/:albumId" element={<Album />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/post/:postId" element={<Post />} />
+          <Route path="/profile/:userId" element={<Profile />} />
+          <Route path="/Album/:albumId" element={<Album />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
