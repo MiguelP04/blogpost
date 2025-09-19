@@ -43,7 +43,7 @@ function Login() {
     <div className="flex justify-center items-center w-full h-screen">
       <div className="flex flex-col items-center gap-2 py-12 w-90 shadow-xl border border-zinc-400 rounded-md">
         <div className="flex flex-col items-center w-full">
-          <h1 className="text-xl font-bold">Login</h1>
+          <h1 className="text-xl font-bold">Welcome to BlogExpress</h1>
           <p className="text-zinc-500">Sign in to your account</p>
         </div>
 
@@ -58,7 +58,8 @@ function Login() {
             <input
               type="text"
               ref={usernameRef}
-              className={`outline text-black px-1 py-0.5 rounded-xs ${
+              placeholder="Pedri, Lamine, Marcus..."
+              className={`px-2 py-1 text-black outline outline-zinc-400 focus:outline-2 placeholder:text-zinc-400  rounded-xs ${
                 errorUsername && "outline-red-600"
               }`}
               required
@@ -70,7 +71,8 @@ function Login() {
             <input
               type="email"
               ref={emailRef}
-              className={`outline text-black px-1 py-0.5 rounded-xs ${
+              placeholder="user123@example.com"
+              className={`px-2 py-1 text-black outline outline-zinc-400 focus:outline-2 placeholder:text-zinc-400 rounded-xs  ${
                 errorEmail && "outline-red-600"
               }`}
               required
@@ -80,9 +82,9 @@ function Login() {
 
           <button
             type="submit"
-            className="py-1 mt-2 bg-black text-white cursor-pointer font-semibold rounded-md"
+            className="py-1 mt-2 bg-black text-white cursor-pointer font-semibold rounded-md hover:bg-zinc-700"
           >
-            Submit
+            Log in
           </button>
         </form>
       </div>
