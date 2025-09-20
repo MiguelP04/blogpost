@@ -36,7 +36,7 @@ function Login() {
         user.email == emailRef.current.value
     );
     setUser(userFound);
-    navigate("/");
+    navigate("/profile/" + userFound[0].id);
   };
 
   return (
