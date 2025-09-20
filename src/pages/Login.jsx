@@ -43,7 +43,7 @@ function Login() {
     <div className="flex justify-center items-center w-full h-screen">
       <div className="flex flex-col items-center gap-2 py-12 w-90 shadow-xl border border-zinc-400 rounded-md">
         <div className="flex flex-col items-center w-full">
-          <h1 className="text-xl font-bold">Welcome to BlogExpress</h1>
+          <h1 className="text-xl font-bold">Welcome to JSON Placeholder</h1>
           <p className="text-zinc-500">Sign in to your account</p>
         </div>
 
