@@ -1,8 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Album from "./pages/Album";
-import Post from "./pages/Post";
+
 import Profile from "./pages/Profile";
 import { ProtectedRoutes } from "./components/ProtectedRoutes";
 
@@ -11,10 +9,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route element={<ProtectedRoutes />}>
-          <Route path="/post/:postId" element={<Post />} />
+        <Route path="/" element={<ProtectedRoutes />}>
+          {/* <Route path="/post/:postId" /> */}
           <Route path="/profile/:userId" element={<Profile />} />
-          <Route path="/Album/:albumId" element={<Album />} />
+          {/* <Route path="/Album/:albumId" /> */}
         </Route>
       </Routes>
     </BrowserRouter>
