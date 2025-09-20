@@ -12,7 +12,6 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoutes />}>
-          <Route path="/" element={<Home />} />
           <Route path="/post/:postId" element={<Post />} />
           <Route path="/profile/:userId" element={<Profile />} />
           <Route path="/Album/:albumId" element={<Album />} />
