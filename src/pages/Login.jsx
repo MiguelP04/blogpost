@@ -30,11 +30,15 @@ function Login() {
       throw new Error("invalid credentials");
     }
 
-    const userFound = users.filter(
+    const userFound = users.find(
       (user) =>
         user.username == usernameRef.current.value &&
         user.email == emailRef.current.value
     );
+    if (!userFound) {
+      setInvalidCreadentials("Invalid credentials");
+      return;
+    }
     setUser(userFound);
 
     localStorage.setItem("user", JSON.stringify(userFound));

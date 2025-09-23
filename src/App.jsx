@@ -14,7 +14,7 @@ function App() {
           <Route element={<MainComponent />}>
             <Route path="/" element={<Home />} />
             {/* <Route path="/post/:postId" /> */}
-            <Route path="/profile/:userId" element={<Profile />} />
+            <Route path="/profile" element={<Profile />} />
             {/* <Route path="/Album/:albumId" /> */}
           </Route>
         </Route>
