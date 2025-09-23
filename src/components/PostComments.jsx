@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import ImageWithLoader from "./ImageWithLoader";
+import { useEffect, useState } from "react";
 
 export default function PostComments({ postId, onClose }) {
   const [comments, setComments] = useState([]);
@@ -20,8 +19,15 @@ export default function PostComments({ postId, onClose }) {
 
       <div className="relative w-full max-w-3xl bg-white rounded-2xl shadow-lg overflow-auto max-h-[80vh]">
         <div className="flex items-center justify-between p-4 border-b">
-          <h3 className="text-lg font-semibold">Comentarios del post #{postId}</h3>
-          <button onClick={onClose} className="text-sm text-gray-600 hover:text-gray-900">Cerrar</button>
+          <h3 className="text-lg font-semibold">
+            Comentarios del post #{postId}
+          </h3>
+          <button
+            onClick={onClose}
+            className="text-sm text-gray-600 hover:text-gray-900"
+          >
+            Cerrar
+          </button>
         </div>
 
         <div className="p-4 space-y-4">
@@ -33,7 +39,9 @@ export default function PostComments({ postId, onClose }) {
             comments.map((c) => (
               <div key={c.id} className="p-3 bg-gray-50 rounded-lg">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-9 h-9 rounded-full bg-indigo-200 flex items-center justify-center text-indigo-700 font-semibold">{c.name[0]}</div>
+                  <div className="w-9 h-9 rounded-full bg-indigo-200 flex items-center justify-center text-indigo-700 font-semibold">
+                    {c.name[0]}
+                  </div>
                   <div>
                     <div className="text-sm font-medium">{c.name}</div>
                     <div className="text-xs text-gray-500">{c.email}</div>
