@@ -12,7 +12,7 @@ export function UserProvider({ children }) {
   );
 }
 
-export function useUserContext() {
+export function useUserData() {
   const context = useContext(UserContext);
   if (!context) {
     throw new Error("useUserContext must be used within a userProvider");

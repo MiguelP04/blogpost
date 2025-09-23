@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useUserData } from "../hooks/useUserData";
+import { useUserData } from "../context/UserContext";
 import { useUsers } from "../hooks/useUsers";
 import { useNavigate } from "react-router";
 
@@ -36,7 +36,9 @@ function Login() {
         user.email == emailRef.current.value
     );
     setUser(userFound);
-    navigate("/profile/" + userFound[0].id);
+
+    localStorage.setItem("user", JSON.stringify(userFound));
+    navigate("/");
   };
 
   return (

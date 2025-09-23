@@ -1,24 +1,24 @@
 import { useState, useEffect } from "react";
-import { fetchUsers } from "../services/fetchApi";
+import { fetchPosts } from "../services/fetchApi";
 
-export function useUsers() {
-  const [users, setUsers] = useState([]);
+export function usePosts() {
+  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function getUsers() {
+    async function getPosts() {
       try {
         setLoading(true);
-        const data = await fetchUsers();
-        setUsers(data);
+        const data = await fetchPosts();
+        setPosts(data);
       } catch (error) {
         console.error(error);
       } finally {
         setLoading(false);
       }
     }
-    getUsers();
+    getPosts();
   }, []);
 
-  return { users, loading };
+  return { posts, loading };
 }
