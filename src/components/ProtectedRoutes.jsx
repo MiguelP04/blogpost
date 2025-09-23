@@ -1,12 +1,19 @@
 import { Navigate, Outlet } from "react-router";
-import { useUserData } from "../hooks/useUserData";
+import { useUserData } from "../context/UserContext";
+import { useEffect } from "react";
 
-export function ProtectedRoutes({ children }) {
-  const { user } = useUserData();
+export function ProtectedRoutes() {
+  const { setUser } = useUserData();
 
-  if (!user) {
+  const userStorage = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(() => {
+    setUser(userStorage);
+  }, []);
+
+  if (!userStorage) {
     return <Navigate to="/login" replace />;
   }
 
-  return children ? children : <Outlet />;
+  return <Outlet />;
 }

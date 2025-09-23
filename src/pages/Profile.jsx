@@ -67,7 +67,6 @@ export default function UserDashboard() {
 
   return (
     <>
-      <Header />
       <div className="flex min-h-screen bg-gray-100">
         <UserNav selectedSection={selectedSection} setSelectedSection={setSelectedSection} />
         <main className="flex-1 p-8 overflow-auto">
