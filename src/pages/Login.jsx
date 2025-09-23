@@ -30,13 +30,17 @@ function Login() {
       throw new Error("invalid credentials");
     }
 
-    const userFound = users.filter(
+    const userFound = users.find(
       (user) =>
         user.username == usernameRef.current.value &&
         user.email == emailRef.current.value
     );
+    if (!userFound) {
+      setInvalidCreadentials("Invalid credentials");
+      return;
+    }
     setUser(userFound);
-    navigate("/profile/" + userFound[0].id);
+    navigate("/");
   };
 
   return (

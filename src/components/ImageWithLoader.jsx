@@ -11,10 +11,11 @@ export default function ImageWithLoader({ src, alt = "", className = "", style =
   };
 
   return (
-    <div className={`relative overflow-hidden ${className}`} style={style}>
+    <div className={`relative overflow-hidden bg-gray-50 ${className}`} style={style}>
+      {/* skeleton */}
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-          <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-full h-full animate-pulse bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100" />
         </div>
       )}
 
@@ -24,16 +25,18 @@ export default function ImageWithLoader({ src, alt = "", className = "", style =
           alt={alt}
           onLoad={handleLoad}
           onError={handleError}
-          className={`w-full h-full object-cover ${loading ? "opacity-0" : "opacity-100"} transition-opacity duration-300`}
+          className={`w-full h-full object-cover ${loading ? "opacity-0 scale-105" : "opacity-100 scale-100"} transition-all duration-400 ease-out`}
           {...rest}
         />
       ) : (
-        <img
-          src={fallbackSrc || "https://http.cat/status/102"}
-          alt={alt}
-          className="w-full h-full object-cover"
-          {...rest}
-        />
+        <div className="w-full h-full flex items-center justify-center bg-gray-100 text-gray-500">
+          <img
+            src={fallbackSrc || "https://via.placeholder.com/300x200?text=No+image"}
+            alt={alt}
+            className="w-full h-full object-cover"
+            {...rest}
+          />
+        </div>
       )}
     </div>
   );

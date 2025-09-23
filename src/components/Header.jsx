@@ -3,7 +3,6 @@ import { useUserData } from "../hooks/useUserData";
 
 const Header = () => {
     const { user, setUser } = useUserData();
-    const [{id}] = user;
 
     return (
     <header className="bg-white">
