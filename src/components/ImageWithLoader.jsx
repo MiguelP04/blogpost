@@ -1,6 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-export default function ImageWithLoader({ src, alt = "", className = "", style = {}, fallbackSrc = null, ...rest }) {
+export default function ImageWithLoader({
+  src,
+  alt = "",
+  className = "",
+  style = {},
+  fallbackSrc = null,
+  ...rest
+}) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -11,7 +18,10 @@ export default function ImageWithLoader({ src, alt = "", className = "", style =
   };
 
   return (
-    <div className={`relative overflow-hidden bg-gray-50 ${className}`} style={style}>
+    <div
+      className={`relative overflow-hidden bg-gray-50 ${className}`}
+      style={style}
+    >
       {/* skeleton */}
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center">
@@ -25,13 +35,17 @@ export default function ImageWithLoader({ src, alt = "", className = "", style =
           alt={alt}
           onLoad={handleLoad}
           onError={handleError}
-          className={`w-full h-full object-cover ${loading ? "opacity-0 scale-105" : "opacity-100 scale-100"} transition-all duration-400 ease-out`}
+          className={`w-full h-full object-cover ${
+            loading ? "opacity-0 scale-105" : "opacity-100 scale-100"
+          } transition-all duration-400 ease-out`}
           {...rest}
         />
       ) : (
         <div className="w-full h-full flex items-center justify-center bg-gray-100 text-gray-500">
           <img
-            src={fallbackSrc || "https://via.placeholder.com/300x200?text=No+image"}
+            src={
+              fallbackSrc || "https://via.placeholder.com/300x200?text=No+image"
+            }
             alt={alt}
             className="w-full h-full object-cover"
             {...rest}

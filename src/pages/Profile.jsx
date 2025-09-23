@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import Header from "../components/Header";
 import UserNav from "../components/UserNav";
 import UserProfile from "../components/UserProfile";
 import UserPosts from "../components/UserPosts";
 import UserAlbums from "../components/UserAlbums";
-import { useUserData } from "../hooks/useUserData";
+import { useUserData } from "../context/UserContext";
 
 const BASE_API = import.meta.env.VITE_BASE_API;
 
@@ -68,12 +67,22 @@ export default function UserDashboard() {
   return (
     <>
       <div className="flex min-h-screen bg-gray-100">
-        <UserNav selectedSection={selectedSection} setSelectedSection={setSelectedSection} />
+        <UserNav
+          selectedSection={selectedSection}
+          setSelectedSection={setSelectedSection}
+        />
         <main className="flex-1 p-8 overflow-auto">
           {selectedSection === "profile" && <UserProfile user={user} />}
-          {selectedSection === "posts" && <UserPosts posts={posts} setPosts={setPosts} userId={user?.id} />}
+          {selectedSection === "posts" && (
+            <UserPosts posts={posts} setPosts={setPosts} userId={user?.id} />
+          )}
           {selectedSection === "albums" && (
-            <UserAlbums albums={albums} selectedAlbumId={selectedAlbumId} setSelectedAlbumId={setSelectedAlbumId} photos={photos} />
+            <UserAlbums
+              albums={albums}
+              selectedAlbumId={selectedAlbumId}
+              setSelectedAlbumId={setSelectedAlbumId}
+              photos={photos}
+            />
           )}
         </main>
       </div>
