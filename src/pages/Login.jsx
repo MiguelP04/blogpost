@@ -40,7 +40,7 @@ function Login() {
       return;
     }
     setUser(userFound);
-    navigate("/profile");
+    navigate("/");
   };
 
   return (
