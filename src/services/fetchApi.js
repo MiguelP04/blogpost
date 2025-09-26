@@ -28,3 +28,20 @@ export async function fetchComments() {
   const data = await response.json();
   return data;
 }
+
+export async function fetchComment(postId) {
+  const responseComments = await fetch(`${BASE_URL}/comments?postId=${postId}`);
+  const responseImages = await fetch(`${USER_IMAGES}/?results=5`);
+
+  const dataComments = await responseComments.json();
+  const dataImages = await responseImages.json();
+
+  const data = dataComments.map((comment, index) => {
+    return {
+      ...comment,
+      image: dataImages.results[index]?.picture.large || null,
+    };
+  });
+
+  return data;
+}
