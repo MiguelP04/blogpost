@@ -1,7 +1,7 @@
-import { fetchComments } from "../services/fetchApi";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { fetchComment } from "../services/fetchApi";
 
-export function useComments() {
+export function useCommentsByPost(postId) {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -9,7 +9,7 @@ export function useComments() {
     async function getComments() {
       try {
         setLoading(true);
-        const data = await fetchComments();
+        const data = await fetchComment(postId);
         setComments(data);
       } catch (error) {
         console.error(error);

@@ -4,18 +4,21 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import MainComponent from "./components/MainComponent";
 import { ProtectedRoutes } from "./components/ProtectedRoutes";
+import PublicRoutes from "./components/PublicRoutes";
+import PostDetails from "./pages/PostDetails";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route element={<PublicRoutes />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
         <Route element={<ProtectedRoutes />}>
           <Route element={<MainComponent />}>
             <Route path="/" element={<Home />} />
-            {/* <Route path="/post/:postId" /> */}
+            <Route path="/post-details" element={<PostDetails />} />
             <Route path="/profile" element={<Profile />} />
-            {/* <Route path="/Album/:albumId" /> */}
           </Route>
         </Route>
       </Routes>
